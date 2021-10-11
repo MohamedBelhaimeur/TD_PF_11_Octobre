@@ -1,4 +1,4 @@
-Question 1)
+#Question 1)
 
 String::lowercase est fonctionnel car deterministe , pure par pas effet de bord ,total pas dexception
 la fonction lowercase est appelé qua partir dun string et renverra tj un string pour un string donné
