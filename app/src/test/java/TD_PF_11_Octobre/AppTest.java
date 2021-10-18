@@ -13,16 +13,16 @@ import java.util.Set;
 public class AppTest {
 
     
-
+// CES TESTS sont pour la question 1 et 2
     public static final Arbre<Integer> arbre1() {
-        final Arbre<Integer>f1 = new Feuille<Integer>(1);
+        final Arbre<Integer >f1 = new Feuille<Integer>(1);
         final Arbre<Integer> f2 = new Feuille<Integer>(2);
         final Arbre<Integer> n1 = new Noeud<Integer>(List.of(f1,f2));
         final Arbre <Integer>f3 = new Feuille<Integer>(3);
         final Arbre<Integer> n2 = new Noeud<Integer>(List.of(n1,f3));
         return n2;
     }
-
+ // CES TESTS sont pour la question 1 et 2
     public static final Arbre<String> arbre2() {
         final Arbre<String> f1 = new Feuille<String>("a");
         final Arbre<String> f2 = new Feuille<String>("b");
@@ -31,7 +31,7 @@ public class AppTest {
         final Arbre<String> n2 = new Noeud<String>(List.of(n1,f3));
         return n2;
     }
-
+ // CES TESTS sont pour la question 1 et 2
     public static final Arbre<Double> arbre3() {
         final Arbre<Double> f1 = new Feuille<Double>(2.00);
         final Arbre <Double> f2 = new Feuille<Double>(1.5);
@@ -40,6 +40,15 @@ public class AppTest {
         final Arbre<Double> n2 = new Noeud<Double>(List.of(n1,f3));
         return n2;
     }
+    
+   /* public static final Sommable<Integer> sommable1() {
+        final Sommable<Integer> f1 = new Noeud<Integer>(2);
+        final Sommable <Integer> f2 = new Sommable<Integer>(1);
+        final Sommable<Integer> n1 = new Sommable<Integer>(3);
+        final Sommable<Integer> f3 = new Sommable<Integer>(3);
+        final Sommable<Integer> n2 = new Sommable<Integer>(5);
+        return sommable1;
+    }*/
 
     @Test public void testSize() {
        

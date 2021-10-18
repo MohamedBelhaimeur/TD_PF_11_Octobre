@@ -2,7 +2,7 @@ package TD_PF_11_Octobre;
 
 import java.util.Set;
 
-public class Feuille<T> implements Arbre<T>{
+public class Feuille<T extends Sommable<T>> implements Arbre<T> {
 	private T val;
 	public Feuille(T val) {
 		this.val=val;
@@ -35,21 +35,21 @@ public class Feuille<T> implements Arbre<T>{
 	}
 
 	@Override
-	public Integer somme() {
+	public T somme() {
 		// TODO Auto-generated method stub
-		return null;
+		return val;
 	}
 
 	@Override
-	public Integer min() {
+	public T min() {
 		// TODO Auto-generated method stub
-		return null;
+		return val;
 	}
 
 	@Override
-	public Integer max() {
+	public T max() {
 		// TODO Auto-generated method stub
-		return null;
+		return val;
 	}
 
 

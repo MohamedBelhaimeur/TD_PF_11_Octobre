@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Noeud<T> implements Arbre<T> {
+public class Noeud<T extends Sommable<T>> implements Arbre<T>{
 
     private final List<Arbre<T>> fils;
 
@@ -40,20 +40,32 @@ public class Noeud<T> implements Arbre<T> {
         return rtr;
     }
 
+
+    @Override
+    public T somme() {
+      if(fils==null) {
+    	  return null;
+      }
+      if (fils.size()==0) {
+    	  return null;
+      }
+      else {
+    	  T v=fils.get(0).somme();
+    	  for (int i=0;i<fils.size();i++) {
+    		  v=v.sommer(fils.get(i).somme());
+    	  }
+      }
+      return null;
+    }
+
 	@Override
-	public Integer somme() {
+	public T min() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Integer min() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer max() {
+	public T max() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -65,26 +77,10 @@ public class Noeud<T> implements Arbre<T> {
 	}
 
   /*  @Override
-    public T somme() {
-        if (fils == null || fils.size() == 0)
-            return null; // should it be 0 ? no because nothing to sum
-        // alternative without 0 initialization
-        // int rtr = fils.get(0).somme();
-        // for (int i = 1; i<fils.size(); i++) {
-        //     rtr += fils.get(i).somme();
-        // }
-        int rtr = 0;
-        for (Arbre<T> a : fils) {
-            rtr += a.somme();
-        }
-        return rtr;
-    }
-
-    @Override
-    public Integer min() {
+    public T min() {
         if (fils == null || fils.size() == 0)
             return null;
-        int rtr = fils.get(0).min();
+        T rtr = fils.get(0).min();
         for (int i = 1; i < fils.size(); i++) {
             int min = fils.get(i).min();
             if (min < rtr) {
@@ -95,7 +91,7 @@ public class Noeud<T> implements Arbre<T> {
     }
 
     @Override
-    public Integer max() {
+    public T max() {
         if (fils == null || fils.size() == 0)
             return null;
         int rtr = fils.get(0).max();
@@ -115,7 +111,7 @@ public class Noeud<T> implements Arbre<T> {
      * <li>&forall; i &in; 1..n-1, max(fi)<= min(fi+1)</li>
      * </ol>
      */
- /*   @Override
+  /*  @Override
     public boolean estTrie() {
         return conditionTrie1() && conditionTrie2();
     }
@@ -133,12 +129,16 @@ public class Noeud<T> implements Arbre<T> {
     private boolean conditionTrie2() {
         boolean rtr = true;
         for (int i = 0; i < fils.size() - 1; i++) {
-            final Arbre fi = fils.get(i);
-            final Arbre fj = fils.get(i+1);
+            final Arbre<T>fi = fils.get(i);
+            final Arbre<T> fj = fils.get(i+1);
                 if (fi.max() > fj.min())
                     return false;
         }
         return rtr;
     }*/
+
+	
+    
+
     
 }
