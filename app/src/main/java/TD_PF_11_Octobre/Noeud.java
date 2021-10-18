@@ -7,16 +7,16 @@ import java.util.Set;
 
 public class Noeud<T> implements Arbre<T> {
 
-    private final List<T> fils;
+    private final List<Arbre<T>> fils;
 
-    public Noeud(final List<T> fils) {
+    public Noeud(final List<Arbre<T>> fils) {
         this.fils = fils;
     }
 
     @Override
     public int taille() {
         int rtr = 0;
-        for (final Arbre a : fils) {
+        for (final Arbre<T> a : fils) {
             rtr += a.taille();
         }
         return rtr;
