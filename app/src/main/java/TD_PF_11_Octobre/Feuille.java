@@ -26,28 +26,30 @@ public class Feuille<T> implements Arbre<T>{
 		return Set.of(val);
 	}
 
-	@Override
-	public T somme() {
-		// TODO Auto-generated method stub
-		return val;
-	}
 
-	@Override
-	public T min() {
-		// TODO Auto-generated method stub
-		return val;
-	}
-
-	@Override
-	public T max() {
-		// TODO Auto-generated method stub
-		return val;
-	}
 
 	@Override
 	public boolean estTrie() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public Integer somme() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer min() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer max() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

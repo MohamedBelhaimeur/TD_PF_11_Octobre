@@ -6,9 +6,97 @@ package TD_PF_11_Octobre;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 public class AppTest {
-    @Test public void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+
+    
+
+    public static final Arbre<Integer> arbre1() {
+        final Arbre<Integer>f1 = new Feuille<Integer>(1);
+        final Arbre<Integer> f2 = new Feuille<Integer>(2);
+        final Arbre<Integer> n1 = new Noeud<Integer>(List.of(f1,f2));
+        final Arbre <Integer>f3 = new Feuille<Integer>(3);
+        final Arbre<Integer> n2 = new Noeud<Integer>(List.of(n1,f3));
+        return n2;
     }
+
+    public static final Arbre<String> arbre2() {
+        final Arbre<String> f1 = new Feuille<String>("a");
+        final Arbre<String> f2 = new Feuille<String>("b");
+        final Arbre<String> n1 = new Noeud<String>(List.of(f1,f2));
+        final Arbre<String> f3 = new Feuille<String>("c");
+        final Arbre<String> n2 = new Noeud<String>(List.of(n1,f3));
+        return n2;
+    }
+
+    public static final Arbre<Double> arbre3() {
+        final Arbre<Double> f1 = new Feuille<Double>(2.00);
+        final Arbre <Double> f2 = new Feuille<Double>(1.5);
+        final Arbre<Double> n1 = new Noeud<Double>(List.of(f1,f2));
+        final Arbre<Double> f3 = new Feuille<Double>(3.2);
+        final Arbre<Double> n2 = new Noeud<Double>(List.of(n1,f3));
+        return n2;
+    }
+
+    @Test public void testSize() {
+       
+        assertEquals(3, arbre1().taille());
+        assertEquals(3, arbre2().taille());
+        assertEquals(3, arbre3().taille());
+    }
+
+    @Test public void testContient() {
+      
+        assertTrue(arbre1().contient(1));
+        assertTrue(arbre2().contient("a"));
+        assertTrue(arbre3().contient(2.0));
+        assertTrue(arbre1().contient(2));
+        assertTrue(arbre2().contient("b"));
+        assertTrue(arbre3().contient(1.5));
+        assertTrue(arbre1().contient(3));
+        assertTrue(arbre2().contient("c"));
+        assertTrue(arbre3().contient(3.2));
+        
+    }
+
+    @Test public void testValeurs() {
+        final Set<Integer> contenu = Set.of(1,2,3);
+        final Set<String> contenu1 = Set.of("a","b","c");
+        final Set<Double> contenu2 = Set.of(2.00,1.5,3.2);
+        assertEquals(contenu, arbre1().valeurs());
+        assertEquals(contenu1, arbre2().valeurs());
+        assertEquals(contenu2, arbre3().valeurs());
+    }
+
+   /* @Test public void testValeur() {
+        assertEquals(null, arbre0().somme());
+        assertEquals((Integer) 6, arbre1().somme());
+        assertEquals((Integer) 6, arbre2().somme());
+        assertEquals((Integer) 6, arbre3().somme());
+    }
+
+    @Test public void testMin() {
+        assertEquals(null, arbre0().min());
+        assertEquals((Integer) 1, arbre1().min());
+        assertEquals((Integer) 1, arbre2().min());
+        assertEquals((Integer) 1, arbre3().min());
+    }
+
+    @Test public void testMax() {
+        assertEquals(null, arbre0().max());
+        assertEquals((Integer) 3, arbre1().max());
+        assertEquals((Integer) 3, arbre2().max());
+        assertEquals((Integer) 3, arbre3().max());
+    }
+
+    @Test public void testEstTrie() {
+        assertTrue(arbre0().estTrie());
+        assertTrue(arbre1().estTrie());
+        assertFalse(arbre2().estTrie());
+        assertFalse(arbre3().estTrie());
+    }
+*/
 }

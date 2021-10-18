@@ -25,7 +25,7 @@ public class Noeud<T> implements Arbre<T> {
     @Override
     public boolean contient(final T val) {
         boolean rtr = false;
-        for (final Arbre a : fils) {
+        for (final Arbre<T> a : fils) {
             if (a.contient(val)) return true;
         }
         return rtr;
@@ -33,14 +33,38 @@ public class Noeud<T> implements Arbre<T> {
 
     @Override
     public Set<T> valeurs() {
-        Set<Integer> rtr = new HashSet<>();
+        Set<T> rtr = new HashSet<>();
         for (final Arbre a : fils) {
             rtr.addAll(a.valeurs());
         }
         return rtr;
     }
 
-    @Override
+	@Override
+	public Integer somme() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer min() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer max() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean estTrie() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+  /*  @Override
     public T somme() {
         if (fils == null || fils.size() == 0)
             return null; // should it be 0 ? no because nothing to sum
@@ -91,7 +115,7 @@ public class Noeud<T> implements Arbre<T> {
      * <li>&forall; i &in; 1..n-1, max(fi)<= min(fi+1)</li>
      * </ol>
      */
-    @Override
+ /*   @Override
     public boolean estTrie() {
         return conditionTrie1() && conditionTrie2();
     }
@@ -115,6 +139,6 @@ public class Noeud<T> implements Arbre<T> {
                     return false;
         }
         return rtr;
-    }
+    }*/
     
 }
