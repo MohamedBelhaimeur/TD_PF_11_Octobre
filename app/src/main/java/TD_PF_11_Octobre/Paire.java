@@ -41,7 +41,7 @@ public class Paire<A,B> implements IPaire<A, B>{
 
 	@Override
 	public <C> IPaire<A, C> changeSnd(C value) {
-		Paire<A, C> a=new Paire<A, C>(this._fst,value);
+			Paire<A, C> a=new Paire<A, C>(this._fst,value);
 		
 		return a;
 	}

@@ -1,91 +1,120 @@
 package TD_PF_11_Octobre;
 
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
-public class Noeud implements Arbre{
-	private final List<Arbre>fils;
-	
-	private Noeud(List<Arbre>abr) {
-		this.fils=abr;
-	}
+public class Noeud<T> implements Arbre<T> {
 
-	@Override
-	public int taille() {
-		// TODO Auto-generated method stub
-		int cpt=0;
-		for (final Arbre a: this.fils) {
-			cpt=cpt+a.taille();
-			
-		}
-		return cpt;
-	}
+    private final List<T> fils;
 
-	@Override
-	public boolean contient(Integer val) {
-		// TODO Auto-generated method stub
-		for (final Arbre a: this.fils) {
-			if(a.contient(val)) {
-				return true;
-			}
-			
-		}
-		return false;
-	}
+    public Noeud(final List<T> fils) {
+        this.fils = fils;
+    }
 
-	@Override
-	public Set<Integer> valeurs() {
-		// TODO Auto-generated method stub
-		Set<Integer>valeurs = new TreeSet<>();
-		for (final Arbre a: this.fils) {
-			valeurs.addAll(a.valeurs());
-		}
-		return valeurs;
-	}
+    @Override
+    public int taille() {
+        int rtr = 0;
+        for (final Arbre a : fils) {
+            rtr += a.taille();
+        }
+        return rtr;
+    }
 
-	@Override
-	public Integer somme() {
-		int somme=0;
-		// TODO Auto-generated method stub
-		for (final Arbre a: this.fils) {
-			somme=somme+a.somme();
-		}
-		return somme;
-	}
+    @Override
+    public boolean contient(final T val) {
+        boolean rtr = false;
+        for (final Arbre a : fils) {
+            if (a.contient(val)) return true;
+        }
+        return rtr;
+    }
 
-	@Override
-	public Integer min() {
-		// TODO Auto-generated method stub
-		TreeSet<Integer>valeurs = new TreeSet<>();
-		for (final Arbre a: this.fils) {
-			valeurs.add(a.min());
-		}
-		return valeurs.first();
-	}
+    @Override
+    public Set<T> valeurs() {
+        Set<Integer> rtr = new HashSet<>();
+        for (final Arbre a : fils) {
+            rtr.addAll(a.valeurs());
+        }
+        return rtr;
+    }
 
-	@Override
-	public Integer max() {
-		// TODO Auto-generated method stub
-		TreeSet<Integer>valeurs = new TreeSet<>();
-		for (final Arbre a: this.fils) {
-			valeurs.add(a.max());
-		}
-		return valeurs.last();
-	}
+    @Override
+    public T somme() {
+        if (fils == null || fils.size() == 0)
+            return null; // should it be 0 ? no because nothing to sum
+        // alternative without 0 initialization
+        // int rtr = fils.get(0).somme();
+        // for (int i = 1; i<fils.size(); i++) {
+        //     rtr += fils.get(i).somme();
+        // }
+        int rtr = 0;
+        for (Arbre<T> a : fils) {
+            rtr += a.somme();
+        }
+        return rtr;
+    }
 
-	@Override
-	public boolean estTrie() {
-		// TODO Auto-generated method stub
-		for (final Arbre a: this.fils) {
-			if(a.estTrie()==false) {
-				return false;
-			}
-		}
-		return true;
-	}
+    @Override
+    public Integer min() {
+        if (fils == null || fils.size() == 0)
+            return null;
+        int rtr = fils.get(0).min();
+        for (int i = 1; i < fils.size(); i++) {
+            int min = fils.get(i).min();
+            if (min < rtr) {
+                rtr = min;
+            }
+        }
+        return rtr;
+    }
 
-	
+    @Override
+    public Integer max() {
+        if (fils == null || fils.size() == 0)
+            return null;
+        int rtr = fils.get(0).max();
+        for (int i = 1; i < fils.size(); i++) {
+            int max = fils.get(i).max();
+            if (max > rtr) {
+                rtr = max;
+            }
+        }
+        return rtr;
+    }
 
+    /**
+     * un noeud de fils f1 ... fi ... fn est trié ssi
+     * <ol>
+     * <li>&forall; i &in; 1..n, fi est trié</li>
+     * <li>&forall; i &in; 1..n-1, max(fi)<= min(fi+1)</li>
+     * </ol>
+     */
+    @Override
+    public boolean estTrie() {
+        return conditionTrie1() && conditionTrie2();
+    }
+
+    private boolean conditionTrie1() {
+        boolean rtr = true;
+        for (int i = 0; i < fils.size() - 1; i++) {
+            final Arbre fi = fils.get(i);
+            if (!fi.estTrie())
+                return false;
+        }
+        return rtr;
+    }
+
+    private boolean conditionTrie2() {
+        boolean rtr = true;
+        for (int i = 0; i < fils.size() - 1; i++) {
+            final Arbre fi = fils.get(i);
+            final Arbre fj = fils.get(i+1);
+                if (fi.max() > fj.min())
+                    return false;
+        }
+        return rtr;
+    }
+    
 }

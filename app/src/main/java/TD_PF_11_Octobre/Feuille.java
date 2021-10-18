@@ -2,9 +2,9 @@ package TD_PF_11_Octobre;
 
 import java.util.Set;
 
-public class Feuille implements Arbre{
-	private int val;
-	public Feuille(int val) {
+public class Feuille<T> implements Arbre<T>{
+	private T val;
+	public Feuille(T val) {
 		this.val=val;
 	}
 
@@ -15,31 +15,31 @@ public class Feuille implements Arbre{
 	}
 
 	@Override
-	public boolean contient(Integer val) {
+	public boolean contient(T val) {
 		// TODO Auto-generated method stub
 		return val.equals(val);
 	}
 
 	@Override
-	public Set<Integer> valeurs() {
+	public Set<T> valeurs() {
 		// TODO Auto-generated method stub
 		return Set.of(val);
 	}
 
 	@Override
-	public Integer somme() {
+	public T somme() {
 		// TODO Auto-generated method stub
 		return val;
 	}
 
 	@Override
-	public Integer min() {
+	public T min() {
 		// TODO Auto-generated method stub
 		return val;
 	}
 
 	@Override
-	public Integer max() {
+	public T max() {
 		// TODO Auto-generated method stub
 		return val;
 	}
